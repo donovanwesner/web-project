@@ -58,7 +58,38 @@ function endPageNav () {
     `
 }
 
-function createItemList() {
+function updatePagination(currentPage) {
+    var currentPage2 = pageList.getElementsByClassName("page-item")[currentPage].innerText;
+    console.log(`${currentPage2}`);
+}
+
+function createItemList(currentPage = 1) {
+    catalogList.innerHTML = ''; // Clear existing items
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const itemsToShow = visibleItems.slice(startIndex, endIndex);
+
+    itemsToShow.forEach(item => {
+        catalogList.innerHTML += createItem(
+            item.format,
+            item.title,
+            item.released,
+            item.title.replace(/\s+/g, '').replace(/\:/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\,/g, '').replace(/\./g, '').replace(/\!/g, '').replace(/\?/g, '').replace(/\'/g, '').replace(/\-/g, ''),
+            item.title.replace(/\s+/g, '-').replace(/\:/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\,/g, '').replace(/\./g, '').replace(/\!/g, '').replace(/\?/g, '').replace(/\'/g, '')
+        );
+    });
+    createPageNav();
+    pageLength.forEach (
+        pageId=>{
+            addPageNav(
+                pageId+1,
+            );
+        }
+    )
+    endPageNav();
+    updatePagination(currentPage);
+}
+/* function createItemList() {
 visibleItems.forEach (
     item=>{
         catalogList.innerHTML += createItem(
@@ -70,16 +101,7 @@ visibleItems.forEach (
         )
     }
 )
-createPageNav();
-pageLength.forEach (
-    pageId=>{
-        addPageNav(
-            pageId+1,
-        );
-    }
-)
-endPageNav();
-}
+} */
 
 createItemList();
 
