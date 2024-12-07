@@ -13,6 +13,7 @@ let itemsPerPage = 24;
 var visibleItems = catalogItems;
 var pageNumber = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
 var pageLength = Array.from({length: pageNumber}, (v, i) => i);
+var currentPage = 1;
 
 // init bootpag
 $('#page-selection').bootpag({
@@ -35,35 +36,50 @@ function createItem(format,title,released,timg,turl) {
 }
 
 function createPageNav() {
-    pageList.innerHTML = `
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-    `;
+    if(currentPage > 1){
+        pageList.innerHTML = `
+            <button class="btn-arrowl">&laquo;</button>
+        `;
+    }
+    else{
+        pageList.innerHTML = `
+            <button class="btn-arrowl" disabled>&laquo;</button>
+        `;
+    }
 }
 function addPageNav(pageId) {
-    pageList.innerHTML += `
-    <li class="page-item"><a class="page-link" href="#">${pageId}</a></li>
-    `
+    if(currentPage === pageId){
+        pageList.innerHTML += `
+            <button class="btn-number" disabled>${pageId}</button>
+        `
+    }
+    else{
+        pageList.innerHTML += `
+            <button class="btn-number">${pageId}</button>
+        `
+    }
 }
 function endPageNav () {
-    pageList.innerHTML += `
-    <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-    `
+    if(currentPage === pageNumber){
+        pageList.innerHTML += `
+            <button class="btn-arrowr" disabled>&raquo;</button>
+        `
+    }
+    else{
+        pageList.innerHTML += `
+            <button class="btn-arrowr">&raquo;</button>
+        `
+    }
 }
+
+console.log(pageNumber);
 
 function updatePagination(currentPage) {
-    var currentPage2 = pageList.getElementsByClassName("page-item")[currentPage].innerText;
-    console.log(`${currentPage2}`);
+    currentButton = pageList.getElementsByClassName("btn-number")[currentPage];
+    currentButton.classList.add("page-active");
 }
 
-function createItemList(currentPage = 1) {
+function createItemList() {
     catalogList.innerHTML = ''; // Clear existing items
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
