@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>Discotek Media > HOME</title>
+		<base href="/home/donovan/Documents/web project/index.htm">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="./node_modules/@popperjs/core/dist/umd/popper.js"></script>
+		<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./css/style.css">
+    	<link rel="stylesheet" href="./scss/custom.css">
+		<script src="./js/filter.js" defer></script>
+		<script src="./js/include.min.js"></script>
+	</head>
+	<body class="bg-primary d-flex flex-column min-vh-100">
+	<!-- Page starts here -->
+		<!-- Navbar - DO NOT REMOVE -->
+		<include src="./header.htm"></include>
+<!-- Page content starts here -->
+<div class="container-fluid py-3">
+	<div class="row px-3">
+    	<div class="d-flex col" style="background-color: #d9d9d9;">
+            <div class="row">
+                <div class="col-12 pt-3 px-3">
+                    <h3>Contact Discotek Media</h3>
+                </div>
+                    <div class="col-12">
+                        <form action="post.php" method="post">
+                        <div class="row px-3">Name:</div>
+                        <div class="row px-3"><input type="text" id="inp" name="Name" class="w-50"></div>
+                        <div class="row px-3">E-mail:</div>
+                        <div class="row px-3"><input type="text" id="inp" name="Mail" class="w-50"></div>
+                        <div class="row px-3">Subject:</div>
+                        <div class="row px-3"><input type="text" id="inp" name="Sub" class="w-50"></div>
+                        <div class="row px-3">Comments:</div>
+                        <div class="row px-3 pb-3"><textarea id="area" name="Text" class="w-100"></textarea></div>
+                        <div class="row px-1">
+                            <p>
+                            <b>Please note:</b> Due to a large amount of messages, we are no longer accepting license suggestions through this form. Please only use this form if you
+                            have an urgent matter. License suggestions can be made on <a href="https://www.reddit.com/r/discotekmedia/comments/15ep5ns/official_discotek_license_wishrequest_thread/">
+                            the OFFICIAL Discotek license wish/request thread on our subreddit</a>.
+                            <br><br>
+                            Questions about items that are out of stock at retailers will not be answered here. Questions about Amazon, Crunchyroll, etc will not be answered. Questions
+                            about when or if we will release a new title will also not be answered. Please follow our social media pages for all new release news.
+                            <br><br>
+                            If you have a defective disc, please include all information in your message and we will get back to you as soon as possible. A defective disc means that
+                            it will not play or load on a "Region A" Blu-ray player or a "Region 1" DVD player, you are located in North America, and you have recently purchased it
+                            new from a retailer.
+                            <br><br>
+                            Please note: We do not replace slipcovers, sleeves, inserts, or cases.
+                            <br><br>
+                            Thank you,
+                            <br>
+                            Discotek Media
+                            </p>
+                        </div>
+                        <div class="row px-3"><input type="submit" value="Send" style="width: fit-content;"></div>
+                    </div>
+                </form>
+            </div>
+		</div>
+	</div>
+</div>
+<!-- Page content ends here -->
+<script src="./js/catalogDb.js"></script>
+<script src="./js/indexCatalog.js"></script>
+<!-- Footer - DO NOT REMOVE -->
+<include src="footer.htm"></include>
+<!-- Page ends here -->
+</body>
+</html>

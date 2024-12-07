@@ -1,0 +1,118 @@
+<html>
+	<head>
+        <meta charset="utf-8">
+		<div id="pageTitle" data-name="
+        TITLE-GOES-HERE
+        "></div>
+        <base href="/home/donovan/Documents/web project/index.htm">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="./node_modules/@popperjs/core/dist/umd/popper.js"></script>
+		<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./css/style.css">
+    	<link rel="stylesheet" href="./scss/custom.css">
+		<script src="./js/include.min.js"></script>
+	</head>
+	<body class="bg-primary d-flex flex-column min-vh-100">
+	<!-- Page starts here -->
+	<!-- Navbar - DO NOT REMOVE -->
+	<include src="./header.htm"></include>
+    <!-- Page content starts here -->
+    <div id="title-info"
+    data-msrp=""
+    data-format=""
+    data-crurl=""
+    data-amzurl=""
+    />
+<div class="container-fluid py-3">
+	<div class="row px-3">
+        <div class="d-flex col-lg-3 order-1">
+            <div class="row">
+                <div style="background-color: #d9d9d9;">
+                    <div class="d-flex justify-content-center"><div class="col-lg-12 col-md-5 col-sm-6 col-12 px-3 pt-3" id="titleImage"></div></div>
+                    <div class="col-lg-12 px-3 pb-3 d-none d-lg-block">
+                        <div class="row pb-3">
+                            <div class="titleMsrp col-lg-12 d-none d-lg-block"></div>
+                            <div class="titleButtons col-lg-12 d-none d-lg-block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="d-flex col-lg-9 order-2">
+            <div class="row">
+                <div style="background-color: #d9d9d9;">
+                    <div class="col-lg-12 pt-lg-3" id="pageName"></div>
+                    <div class="col-lg-12 pb-2" id="pageBadges"></div>
+                    <div class="titleMsrp col-lg-12 d-md-block d-lg-none"></div>
+                    <div class="col-lg-12 pe-lg-3">
+                        <text style="font-size:24px">BLURB</text>
+                    </div>
+                    <div class="col-lg-12 pe-lg-3 pt-2">
+                        <p align="justify">BOX-COPY</p>
+                    </div>
+                    <div class="col-lg-12">
+                        <b><u>FEATURES:</u></b><br>FEATURES
+                    </div>
+                    <div class="titleButtons col-lg-12 d-md-block d-lg-none pt-3"></div>
+                    <div class="col-lg-8 pb-lg-3">
+                        <table class="table table-bordered" style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td class="bg-primary text-light">Released</td>
+                                    <td id="pageReleased"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-primary text-light">Contents</td>
+                                    <td class="bg-white"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-primary text-light">Total runtime</td>
+                                    <td class="bg-white"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-primary text-light">Rating</td>
+                                    <td class="bg-white"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-primary text-light">Video</td>
+                                    <td class="bg-white"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-primary text-light">Audio</td>
+                                    <td class="bg-white"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-primary text-light">Subtitles</td>
+                                    <td class="bg-white"></td>
+                                </tr>
+                                <!-- ONLY SHOW CONTENT ADVISORY IF IT'S ON THE DISC
+                                <tr>
+                                    <td colspan="2" class="bg-primary text-light">⚠ Content Advisory</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        The program featured on this Blu-ray disc contains certain scenes which may make some viewers uncomfortable. It is a product of the time when it was made, and depicts prejudices, stereotypes, and problematic situations that were then commonly used in popular media. This program is being presented as originally created, because to do otherwise would be the same as denying these prejudices ever existed. Discotek Media, their partners, respective affiliates, and employees do not support or endorse the views expressed in this program. Viewer discretion is advised.
+                                    </td>
+                                </tr>
+                                -->
+                                <tr>
+                                    <td colspan="2">&copy; COPYRIGHT</td>
+                                </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+<!-- Page content ends here -->
+<script src="./js/catalogDb.js"></script>
+<script src="./js/catalogPage.js"></script>
+<!-- Footer - DO NOT REMOVE -->
+<include src="./footer.htm"></include>
+<!-- Page ends here -->
+</body>
+</html>

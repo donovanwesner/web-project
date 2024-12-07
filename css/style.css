@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {font-family: 'Poppins', sans-serif;}
+
+.socials {
+    text-align: center;
+    a {
+        text-decoration: none;
+    }
+}
+
+.card {
+	text-align: center;
+	a:link {
+		text-decoration: none;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+}
+
+.hidden {
+    display: none;
+  }
+  
+  .pagination-container {
+    width: calc(100% - 2rem);
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    padding: 1rem 0;
+    justify-content: center;
+  }
+  
+  .pagination-number,
+  .pagination-button{
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    margin: 0.25rem 0.25rem;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: .2rem;
+  }
+  
+  .pagination-number:hover,
+  .pagination-button:not(.disabled):hover {
+    background: #fff;
+  }
+  
+  .pagination-number.active {
+    color: #fff;
+    background: #0085b6;
+  }
+
+table.table-bordered{
+    border:6px solid black;
+    margin-top:20px;
+}
+table.table-bordered > thead > tr > th{
+    border:3px solid black;
+}
+table.table-bordered > tbody > tr > td{
+    border:3px solid black;
+}
