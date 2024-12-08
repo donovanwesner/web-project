@@ -11,6 +11,7 @@
 
 .card {
 	text-align: center;
+  font-size: 14px;
 	a:link {
 		text-decoration: none;
 	}
@@ -23,22 +24,81 @@
     display: none;
 }
 
+#pageNav button {
+  border: 0;
+}
 
-.btn-arrowl {
+.btn-arrowl2 {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+  width: 25px;
+  height: 40px;
+}
+.btn-arrowl2:not([disabled]){
+  background-color: #2215df;
+  color: white;
+}
+.btn-arrowl2:not([disabled]):hover {
+  background-color: #517efc;
+}
+.btn-arrowl2:disabled{
+  background-color: #4f4b7e;
+}
+.btn-arrowl {
+  background-color: #157cdf;
   width: 20px;
   height: 40px;
 }
+.btn-arrowl:not([disabled]){
+  color: white;
+}
+.btn-arrowl:not([disabled]):hover {
+  background-color: #30bbfc;
+}
+.btn-arrowl:disabled{
+  background-color: #5c7286;
+}
 .btn-number {
+  background-color: white;
   width: 40px;
   height: 40px;
 }
-.btn-arrowr {
+.btn-number:not([disabled]):hover {
+  background-color: rgb(131, 131, 131);
+  color: white;
+}
+.btn-number:disabled {
+  background-image: linear-gradient(rgb(150, 150, 150), white);
+}
+.btn-arrowr2 {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  width: 25px;
+  height: 40px;
+}
+.btn-arrowr2:not([disabled]){
+  background-color: #2215df;
+  color: white;
+}
+.btn-arrowr2:not([disabled]):hover {
+  background-color: #517efc;
+}
+.btn-arrowr2:disabled{
+  background-color: #4f4b7e;
+}
+.btn-arrowr {
+  background-color: #157cdf;
   width: 20px;
   height: 40px;
+}
+.btn-arrowr:not([disabled]){
+  color: white;
+}
+.btn-arrowr:not([disabled]):hover {
+  background-color: #30bbfc;
+}
+.btn-arrowr:disabled{
+  background-color: #5c7286;
 }
 
 

@@ -8,19 +8,12 @@ const filterBd = catalogItems.filter((isBd) => isBd.format === "bd");
 const filterSdbd = catalogItems.filter((isSdbd) => isSdbd.format === "sdbd");
 const filterDvd = catalogItems.filter((isDvd) => isDvd.format === "dvd");
 
-let itemsPerPage = 24;
+let itemsPerPage = 12;
 
 var visibleItems = catalogItems;
-var pageNumber = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
-var pageLength = Array.from({length: pageNumber}, (v, i) => i);
+var totalPages = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
+var totalPageLength = Array.from({length: totalPages}, (v, i) => i);
 var currentPage = 1;
-
-// init bootpag
-$('#page-selection').bootpag({
-    total: pageNumber
-}).on("page", function(event, /* page number here */ num){
-     $("#content").html("Insert content"); // some ajax content loading...
-});
 
 // Functions to create catalog items
 function createItem(format,title,released,timg,turl) {
@@ -35,14 +28,17 @@ function createItem(format,title,released,timg,turl) {
     `
 }
 
+// Functions to create pagination
 function createPageNav() {
     if(currentPage > 1){
         pageList.innerHTML = `
-            <button class="btn-arrowl">&laquo;</button>
+            <button class="btn-arrowl2" onclick="goToFirst()">&laquo;&laquo;</button>
+            <button class="btn-arrowl" onclick="downApage()">&laquo;</button>
         `;
     }
     else{
         pageList.innerHTML = `
+            <button class="btn-arrowl2" disabled>&laquo;&laquo;</button>
             <button class="btn-arrowl" disabled>&laquo;</button>
         `;
     }
@@ -55,32 +51,54 @@ function addPageNav(pageId) {
     }
     else{
         pageList.innerHTML += `
-            <button class="btn-number">${pageId}</button>
+            <button class="btn-number" onclick="goToPage(this)">${pageId}</button>
         `
     }
 }
 function endPageNav () {
-    if(currentPage === pageNumber){
+    if(currentPage === totalPages){
         pageList.innerHTML += `
             <button class="btn-arrowr" disabled>&raquo;</button>
+            <button class="btn-arrowr2" disabled>&raquo;&raquo;</button>
         `
     }
     else{
         pageList.innerHTML += `
-            <button class="btn-arrowr">&raquo;</button>
+            <button class="btn-arrowr" onclick="upApage()">&raquo;</button>
+            <button class="btn-arrowr2" onclick="goToLast()">&raquo;&raquo;</button>
         `
     }
 }
 
-console.log(pageNumber);
-
-function updatePagination(currentPage) {
-    currentButton = pageList.getElementsByClassName("btn-number")[currentPage];
-    currentButton.classList.add("page-active");
+// Functions to change current page when clicking on pagination buttons
+function goToFirst() {
+    currentPage = 1;
+    createItemList();
+    
+}
+function downApage() {
+    currentPage = currentPage - 1;
+    createItemList();
+    
+}
+function upApage() {
+    currentPage = currentPage + 1;
+    createItemList();
+    
+}
+function goToLast() {
+    currentPage = totalPages;
+    createItemList();
+    
+}
+function goToPage(a) {
+    currentPage = Number(a.innerText);
+    createItemList();
 }
 
 function createItemList() {
-    catalogList.innerHTML = ''; // Clear existing items
+    catalogList.innerHTML = '';
+    if(currentPage > totalPages){ currentPage = 1; }
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const itemsToShow = visibleItems.slice(startIndex, endIndex);
@@ -95,74 +113,69 @@ function createItemList() {
         );
     });
     createPageNav();
-    pageLength.forEach (
+
+    let pageStartIndex = (currentPage - 4);
+    if(pageStartIndex < 0){pageStartIndex = 0;} // set to 0 if pageStartIndex returns a negative value
+    let pageEndIndex = pageStartIndex + 7;
+    if(pageEndIndex > totalPages){pageEndIndex = totalPages;} // cap pageEndIndex at var totalPages's value
+    if(pageStartIndex > totalPages - 7){pageStartIndex = totalPages - 7; if(pageStartIndex < 0){pageStartIndex = 0;}}
+    if(pageEndIndex > totalPages){pageEndIndex = totalPages;}
+    const pagesToShow = totalPageLength.slice(pageStartIndex, pageEndIndex);
+
+    pagesToShow.forEach (
         pageId=>{
             addPageNav(
                 pageId+1,
             );
         }
     )
+    
     endPageNav();
-    updatePagination(currentPage);
 }
-/* function createItemList() {
-visibleItems.forEach (
-    item=>{
-        catalogList.innerHTML += createItem(
-            item.format,
-            item.title,
-            item.released,
-            item.title.replace(/\s+/g, '').replace(/\:/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\,/g, '').replace(/\./g, '').replace(/\!/g, '').replace(/\?/g, '').replace(/\'/g, '').replace(/\-/g, ''),
-            item.title.replace(/\s+/g, '-').replace(/\:/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\,/g, '').replace(/\./g, '').replace(/\!/g, '').replace(/\?/g, '').replace(/\'/g, '')
-        )
-    }
-)
-} */
-
 createItemList();
 
 
 // Filter functions
 function refreshItems() {
-    catalogList.replaceChildren();
-    pageList.replaceChildren();
+    catalogList.innerHTML = '';
+    pageList.innerHTML = '';
     createItemList();
 }
 
 function showAll() {
     visibleItems = catalogItems;
-    pageNumber = Math.ceil(JSON.stringify(visibleItems.length)/24);
-    pageLength = Array.from({length: pageNumber}, (v, i) => i);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function show4k() {
     visibleItems = filter4k;
-    pageNumber = Math.ceil(JSON.stringify(visibleItems.length)/24);
-    pageLength = Array.from({length: pageNumber}, (v, i) => i);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function show4kbd() {
     visibleItems = filter4kbd;
-    pageNumber = Math.ceil(JSON.stringify(visibleItems.length)/24);
-    pageLength = Array.from({length: pageNumber}, (v, i) => i);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function showBd() {
     visibleItems = filterBd;
-    pageNumber = Math.ceil(JSON.stringify(visibleItems.length)/24);
-    pageLength = Array.from({length: pageNumber}, (v, i) => i);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function showSdbd() {
     visibleItems = filterSdbd;
-    pageNumber = Math.ceil(JSON.stringify(visibleItems.length)/24);
-    pageLength = Array.from({length: pageNumber}, (v, i) => i);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function showDvd() {
     visibleItems = filterDvd;
-    pageNumber = Math.ceil(JSON.stringify(visibleItems.length)/24);
-    pageLength = Array.from({length: pageNumber}, (v, i) => i);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 

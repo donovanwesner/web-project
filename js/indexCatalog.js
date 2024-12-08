@@ -1,6 +1,10 @@
 const indexList = document.getElementById("nowAvailable");
 
-var visibleItems = catalogItems.slice(0,12);
+let getDate = new Date()
+let currentDate = getDate.toISOString().split('T')[0]
+
+const outItems = catalogItems.filter((isOutNow => isOutNow.released < currentDate));
+var visibleItems = outItems.slice(0,12);
 
 function createItem(format,title,released,timg,turl) {
     return `
