@@ -15,6 +15,9 @@ var totalPages = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
 var totalPageLength = Array.from({length: totalPages}, (v, i) => i);
 var currentPage = 1;
 
+const navigationEntry = performance.getEntriesByType('navigation')[0];
+let input = document.getElementById('catalogSearch');
+
 // Functions to create catalog items
 function createItem(format,title,released,timg,turl) {
     return `
@@ -96,6 +99,13 @@ function goToPage(a) {
     createItemList();
 }
 
+// Search function
+if (navigationEntry && navigationEntry.type === 'reload') {
+    input.value = "";
+}
+function searchCatalog() {
+}
+
 function createItemList() {
     catalogList.innerHTML = '';
     if(currentPage > totalPages){ currentPage = 1; }
@@ -131,6 +141,8 @@ function createItemList() {
     )
     
     endPageNav();
+    searchCatalog();
+    console.log(visibleItems);
 }
 createItemList();
 
@@ -177,20 +189,4 @@ function showDvd() {
     totalPages = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
     totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
-}
-
-// Search function
-function searchCatalog() {
-    let input = document.getElementById('catalogSearch').value
-    input = input.toLowerCase();
-    let x = document.getElementsByClassName('catalogEntry');
-
-    for (i = 0; i < x.length; i++) {
-        if (!x[i].dataset.title.toLowerCase().includes(input)) {
-            x[i].style.display = "none";
-        }
-        else {
-            x[i].style.display = "";
-        }
-    }
 }
