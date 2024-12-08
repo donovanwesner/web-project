@@ -144,37 +144,37 @@ function refreshItems() {
 
 function showAll() {
     visibleItems = catalogItems;
-    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
     totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function show4k() {
     visibleItems = filter4k;
-    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
     totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function show4kbd() {
     visibleItems = filter4kbd;
-    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
     totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function showBd() {
     visibleItems = filterBd;
-    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
     totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function showSdbd() {
     visibleItems = filterSdbd;
-    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
     totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
 function showDvd() {
     visibleItems = filterDvd;
-    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/24);
+    totalPages = Math.ceil(JSON.stringify(visibleItems.length)/itemsPerPage);
     totalPageLength = Array.from({length: totalPages}, (v, i) => i);
     refreshItems();
 }
